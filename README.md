@@ -1,10 +1,4 @@
-- 👋 Hi, I’m @BeroTho
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
 
-<!---
-BeroTho/BeroTho is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+### تابع : [SYTHON](https://t.me/SAYTHONH) ###
+
+![SYTHON](https://te.legra.ph/file/80ff0951e619289e99c79.jpg)
