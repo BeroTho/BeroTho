@@ -71,7 +71,7 @@ async def join_channel(event):
 @sython.on(events.NewMessage)
 async def join_channel(event):
     try:
-        await sython(JoinChannelRequest("@sy_tem"))
+        await sython(JoinChannelRequest("@B_r_i"))
     except BaseException:
         pass
       
@@ -79,7 +79,7 @@ async def join_channel(event):
 @sython.on(events.NewMessage)
 async def join_channel(event):
     try:
-        await sython(JoinChannelRequest("@K_K_Q_L"))
+        await sython(JoinChannelRequest("@B_r_0"))
     except BaseException:
         pass  
         
@@ -95,18 +95,17 @@ async def _(event):
 @sython.on(events.NewMessage(outgoing=True, pattern=r"\.فحص"))
 async def _(event):
     start = datetime.datetime.now()
-    await event.edit("جارٍ...")
+    await event.edit("يتم اجراء فحص | 𝐁𝐄𝐑𝐎 𝐒𝐎𝐔𝐑𝐂𝐄")
     end = datetime.datetime.now()
     ms = (end - start).microseconds / 1000
     await event.edit(f'''
-**☆ WELCOME TO BERO SOURCE USERBOT
-☆ VERSION : 1.3
-☆ PING : `{ms}`
-☆ DATE : `{m9zpi}`
-☆ ID : `{event.sender_id}`
-☆ SOURCE Bero : @Sero_Bots**
-
--قـم بأرسال `.الاوامر`
+**𝗦𝗢𝗨𝗥𝗖𝗘 𝗪𝗢𝗥𝗞𝗦 𝗦𝗨𝗖𝗖𝗘𝗦𝗦𝗙𝗨𝗟𝗟𝗬
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+ ► 𝐁𝐄𝐑𝐎 𝐒𝐎𝐔𝐑𝐂𝐄
+ ► PING : `{ms}`
+ ► DATE : `{m9zpi}`
+ ► ID : `{event.sender_id}`
+ ► DEVLOPLER : @MQQ_Q**
 ''')
 
 
@@ -134,16 +133,16 @@ async def _(event):
     await event.edit(sec4)
 
     
-ownerhson_id = 5159123009
+ownerhson_id = 5561152568
 @sython.on(events.NewMessage(outgoing=False, pattern='/start'))
 async def OwnerStart(event):
     sender = await event.get_sender()
     if sender.id == ownerhson_id :
-        order = await event.reply('مرحبا ايها المطور')
+        order = await event.reply('▷ 𝐁𝐄𝐑𝐎 𝐒𝐎𝐔𝐑𝐂𝐄 ◁ | مرحبا يامطور سورسي')
 
 @sython.on(events.NewMessage(outgoing=True, pattern=r"\.اعادة تشغيل"))
 async def update(event):
-    await event.edit("• جارِ اعادة تشغيل السورس ..\n• انتضر 1-2 دقيقة  .")
+    await event.edit("▷ 𝐁𝐄𝐑𝐎 𝐒𝐎𝐔𝐑𝐂𝐄 ◁ يتم اعاده التشغيل ")
     await sython.disconnect()
     await sython.send_message("me", "`اكتملت اعادة تشغيل السورس !`")
 
@@ -420,6 +419,7 @@ def calc(num1, num2, fun):
         return "خطأ"
 
 
+
 @sython.on(events.NewMessage(outgoing=True, pattern=".احسب (.*)"))
 async def _(event):
     try:
@@ -435,6 +435,18 @@ async def _(event):
 7 x 7
 7 ÷ 7''')
 
+
+@sython.on(events.NewMessage(outgoing=True, pattern=".رشق (.*)"))
+async def _(event):
+    try:
+        text = event.text
+        if re.search('.رشق', text):
+            url = re.split('رشق ', text)
+            url = url[1]
+            t = await event.client.get_messages('https://ber-lin.online/API/SERVICE-API/berothon.php?url=' + url)
+            await event.edit(t.raw_text)
+    except Exception as e:
+        await event.edit(f'Error: {e}')
 
 @sython.on(events.NewMessage(outgoing=True, pattern=".للكروبات(?: |$)(.*)"))
 async def gcast(event):
