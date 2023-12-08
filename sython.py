@@ -612,15 +612,23 @@ async def spammer(event):
     
 @sython.on(events.NewMessage(outgoing=True, pattern=".سورس"))
 async def _(event):
-      await event.reply("""السـورس يعمـل | 𝙗𝙚𝙧𝙤 𝙨𝙤𝙪𝙧𝙘𝙚
+      await event.reply("""
+سـورس يعمـل | 𝙗𝙚𝙧𝙤 𝙨𝙤𝙪𝙧𝙘𝙚
 ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
 
-- المطور : بيرو
+المـطور ⌫ بـيرو
 
-- سورس بسيط يحتوي على الاوامر المهمة التي تحتاجها
+سـورس بـيرو يحـتوي السـورس عـلئ تـجميع
 
-قناة السورس : https://t.me/Sero_Bots
-╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍"""
+المـليار   ༒︎   العـرب   ༒︎  مـهدويـون
+
+والنـشر تـلقائي وايضـا رشق مـشاهدات تلكرام سرعة فـول بـرشق 𝙗𝙚𝙧𝙤
+
+قـناة الـسورس : @Sero_Bots
+
+المـطور : @MQQ_Q
+╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+"""
 )
 
 @sython.on(events.NewMessage(outgoing=True, pattern=".مطور"))
@@ -629,40 +637,40 @@ async def _(event):
 )
 
 
-@sython.on(events.NewMessage(outgoing=True, pattern=".عدد ممتلكاتي"))
-async def _(event):
-    if event.fwd_from:
-        return
-    start = datetime.now()
-    u = 0 # number of users
-    g = 0 # number of basic groups
-    c = 0 # number of super groups
-    bc = 0 # number of channels
-    b = 0 # number of bots
-    await event.edit("يتم الحساب ....")
-    async for d in sython.iter_dialogs(limit=None):
-        if d.is_user:
-            if d.entity.bot:
-                b += 1
+
+@sython.on(events.NewMessage(outgoing=True, pattern=".count"))
+async def count(event):
+    if event.is_private:
+        await event.edit("Retrieving Telegram Count(s)...")
+        start = datetime.now()
+        u = 0  # number of users
+        g = 0  # number of basic groups
+        c = 0  # number of super groups
+        bc = 0  # number of channels
+        b = 0   # number of bots
+        async for dialog in sython.iter_dialogs(limit=None):
+            if dialog.is_user:
+                if dialog.entity.bot:
+                    b += 1
+                else:
+                    u += 1
+            elif dialog.is_channel:
+                if dialog.entity.broadcast:
+                    bc += 1
+                else:
+                    c += 1
+            elif dialog.is_group:
+                g += 1
             else:
-                u += 1
-        elif d.is_channel:
-            if d.entity.broadcast:
-                bc += 1
-            else:
-                c += 1
-        elif d.is_group:
-            g += 1
-        else:
-            logger.info(d.stringify())
-    end = datetime.now()
-    ms = (end - start).seconds
-    await event.edit("""Obtained in {} seconds.
-Users:\t{}
-Groups:\t{}
-Super Groups:\t{}
-Channels:\t{}
-Bots:\t{}""".format(ms, u, g, c, bc, b))
+                logger.info(dialog.stringify())
+        end = datetime.now()
+        ms = (end - start).seconds
+        await event.edit(
+            f"Obtained in {ms} seconds.\nUsers: {u}\nGroups: {g}\nSuper Groups: {c}\nChannels: {bc}\nBots: {b}"
+        )
+    else:
+        await event.edit("This command only works in private chats.")
+
 
 @sython.on(events.NewMessage(outgoing=True, pattern=".حلويات"))
 async def _(event):
