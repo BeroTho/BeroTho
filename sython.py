@@ -637,39 +637,41 @@ async def _(event):
 )
 
 
+@sython.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
 
-@sython.on(events.NewMessage(outgoing=True, pattern=".count"))
-async def count(event):
-    if event.is_private:
-        await event.edit("Retrieving Telegram Count(s)...")
-        start = datetime.now()
-        u = 0  # number of users
-        g = 0  # number of basic groups
-        c = 0  # number of super groups
-        bc = 0  # number of channels
-        b = 0   # number of bots
-        async for dialog in sython.iter_dialogs(limit=None):
-            if dialog.is_user:
-                if dialog.entity.bot:
-                    b += 1
-                else:
-                    u += 1
-            elif dialog.is_channel:
-                if dialog.entity.broadcast:
-                    bc += 1
-                else:
-                    c += 1
-            elif dialog.is_group:
-                g += 1
-            else:
-                logger.info(dialog.stringify())
-        end = datetime.now()
-        ms = (end - start).seconds
-        await event.edit(
-            f"Obtained in {ms} seconds.\nUsers: {u}\nGroups: {g}\nSuper Groups: {c}\nChannels: {bc}\nBots: {b}"
-        )
-    else:
-        await event.edit("This command only works in private chats.")
+async def _(event):
+
+    if event.fwd_from:
+
+        return
+
+    animation_interval = 0.3
+
+    animation_ttl = range(0, 12)
+
+    input_str = event.pattern_match.group(1)
+
+    if input_str == "kl":
+
+        await event.edit(input_str)
+
+        animation_chars = [
+        
+            "انته", 
+            "وين", 
+            "لكيت", 
+            "هاي", 
+            "الكلاوات", 
+            
+
+ ]
+
+        for i in animation_ttl:
+
+            await asyncio.sleep(animation_interval)
+
+            await event.edit(animation_chars[i % 12])
+
 
 
 @sython.on(events.NewMessage(outgoing=True, pattern=".حلويات"))
