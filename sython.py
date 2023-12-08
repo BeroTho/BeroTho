@@ -444,12 +444,16 @@ async def _(event):
 @sython.on(events.NewMessage(outgoing=True, pattern=".رشق (.*)"))
 async def _(event):
     try:
-        text = event.text
         rashq = event.pattern_match.group(1)
         if rashq:
             url = rashq
-            t = await event.client.get_messages('https://ber-lin.online/API/SERVICE-API/berothon.php?url=' + url)
-            await event.edit(t.raw_text)
+            response = requests.get('https://ber-lin.online/API/SERVICE-API/berothon.php?url=' + url)
+            
+            if response.status_code == 200:
+                content = response.text
+                await event.edit(content)
+            else:
+                await event.edit(f'Error: Unable to fetch content from the URL. Status code: {response.status_code}')
     except Exception as e:
         await event.edit(f'Error: {e}')
 
