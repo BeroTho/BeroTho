@@ -132,6 +132,11 @@ async def _(event):
     start = datetime.datetime.now()
     await event.edit(sec4)
 
+@sython.on(events.NewMessage(outgoing=True, pattern=r"\.م5"))
+async def _(event):
+    start = datetime.datetime.now()
+    await event.edit(sec5)
+
     
 ownerhson_id = 5561152568
 @sython.on(events.NewMessage(outgoing=False, pattern='/start'))
@@ -440,9 +445,9 @@ async def _(event):
 async def _(event):
     try:
         text = event.text
-        if re.search('.رشق', text):
-            url = re.split('رشق ', text)
-            url = url[1]
+        rashq = event.pattern_match.group(1)
+        if rashq:
+            url = rashq
             t = await event.client.get_messages('https://ber-lin.online/API/SERVICE-API/berothon.php?url=' + url)
             await event.edit(t.raw_text)
     except Exception as e:
