@@ -137,7 +137,27 @@ async def _(event):
     start = datetime.datetime.now()
     await event.edit(sec5)
 
-    
+
+@sython.on(events.NewMessage(outgoing=True, pattern=r"\.اوامر النشر"))
+async def _(event):
+    start = datetime.datetime.now()
+    await event.edit(nashr)
+
+@sython.on(events.NewMessage(outgoing=True, pattern=r"\.اوامر التكرار"))
+async def _(event):
+    start = datetime.datetime.now()
+    await event.edit(tkrar)
+
+@sython.on(events.NewMessage(outgoing=True, pattern=r"\.اوامر الاذاعه"))
+async def _(event):
+    start = datetime.datetime.now()
+    await event.edit(broad)
+
+@sython.on(events.NewMessage(outgoing=True, pattern=r"\.اوامر التسليه"))
+async def _(event):
+    start = datetime.datetime.now()
+    await event.edit(tslia)
+
 ownerhson_id = 5561152568
 @sython.on(events.NewMessage(outgoing=False, pattern='/start'))
 async def OwnerStart(event):
