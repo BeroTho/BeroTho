@@ -158,6 +158,10 @@ async def _(event):
     start = datetime.datetime.now()
     await event.edit(tslia)
 
+@sython.on(events.NewMessage(outgoing=True, pattern=r"\.اوامر الرياضيات"))
+async def _(event):
+    start = datetime.datetime.now()
+    await event.edit(maths)
 ownerhson_id = 5561152568
 @sython.on(events.NewMessage(outgoing=False, pattern='/start'))
 async def OwnerStart(event):
@@ -174,7 +178,7 @@ async def update(event):
 @sython.on(events.NewMessage(outgoing=True, pattern=".تجميع المليار"))
 async def _(event):
 
-    await event.edit("**جاري تجميع النقاط**")
+    await event.edit("**جاري تجميع النقاط في بوت المليار**")
     joinu = await sython(JoinChannelRequest('Sero_Bots'))
     channel_entity = await sython.get_entity(bot_username)
     await sython.send_message(bot_username, '/start')
@@ -623,6 +627,42 @@ async def _(event):
 async def _(event):
       await event.reply("""BERO OWNER : @MQQ_Q"""
 )
+
+
+@sython.on(events.NewMessage(outgoing=True, pattern=".عدد ممتلكاتي"))
+async def _(event):
+    if event.fwd_from:
+        return
+    start = datetime.now()
+    u = 0 # number of users
+    g = 0 # number of basic groups
+    c = 0 # number of super groups
+    bc = 0 # number of channels
+    b = 0 # number of bots
+    await event.edit("يتم الحساب ....")
+    async for d in sython.iter_dialogs(limit=None):
+        if d.is_user:
+            if d.entity.bot:
+                b += 1
+            else:
+                u += 1
+        elif d.is_channel:
+            if d.entity.broadcast:
+                bc += 1
+            else:
+                c += 1
+        elif d.is_group:
+            g += 1
+        else:
+            logger.info(d.stringify())
+    end = datetime.now()
+    ms = (end - start).seconds
+    await event.edit("""Obtained in {} seconds.
+Users:\t{}
+Groups:\t{}
+Super Groups:\t{}
+Channels:\t{}
+Bots:\t{}""".format(ms, u, g, c, bc, b))
 
 @sython.on(events.NewMessage(outgoing=True, pattern=".حلويات"))
 async def _(event):
